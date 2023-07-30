@@ -1,1 +1,17 @@
-game:GetService("RunService").RenderStepped:Connect(function()         game:GetService("Workspace").Camera.FieldOfView = 250         end)
+game:GetSurvice("RunSurvice") = game:GetSurvice("Wardone")
+Local Wardone = 
+Wardone.name = "Wardone"
+Local Wardone = "Part"
+Color3.new(0,0,1)
+game:GetSurvice("RunSurvice") = game:GetSurvice("Closer")
+Local Closer = 
+Closer.name = "Closer"
+Local Closer = "Part"
+Color3.new(1,1,1)
+Local do function()
+game:GetSurvice("Player")
+Local walkspeed = 0
+Local Light = true
+End(
+  End)
+    End
