@@ -1,7 +1,7 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("Cover Hub", "Doors", Color3.new(7,9.9), Enum.KeyCode.RightControl)
+local Window = Flux:Window("Voidz Hub", "Doors", Color3.new(7,9.9), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("Hỗ Trợ", "rbxassetid://6026568198")
 local Tab2 = Window:Tab("Cài Đăt", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -531,6 +531,14 @@ if Floor.Value == "Phòng" then
         DisableA90 = Bool
     end)
 end
+Tab2:Toggle("Esp Vật Phẩm","Highlights items like Keys, Books, and Crucifixes through walls.",false,function(Bool)
+    ItemESP = Bool
+    for _,Object in pairs(workspace:GetDescendants()) do
+        if ESP_Items[Object.Name] then
+            ApplySettings(Object)
+        end
+    end
+end)
 Tab2:Toggle("Xoá Cuộc Trò Chuyện Khi Chết","Completely skips the Guiding/Curious light messages that appear after you die.",false,function(Bool)
     RemoveDeathHint = Bool
 end)
