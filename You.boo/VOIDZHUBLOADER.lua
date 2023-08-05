@@ -1,7 +1,7 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("Voidz Hub", "CREATE LOLCAT AND MURDER", Color3.new(10,4.9), Enum.KeyCode.RightControl)
+local Window = Flux:Window("Voidz Hub", "CREATE LOLCAT GUI AND MURDER", Color3.new(10,10.9,9), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("MAIN", "rbxassetid://6026568198")
 local Tab2 = Window:Tab("GAME", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -17,7 +17,7 @@ local AvatarIcon = Players:GetUserThumbnailAsync(LocalPlayer.UserId,Enum.Thumbna
 local MainUI = LocalPlayer.PlayerGui.MainUI
 local Main_Game = MainUI.Initiator.Main_Game
 local Modules = Main_Game.RemoteListener.Modules
-local SpeedBoost = 4.5
+local SpeedBoost = 5
 local ScreechSafeRooms = {}
 local PrimaryPart = Character.PrimaryPart
 local CurrentRooms = workspace.CurrentRooms
