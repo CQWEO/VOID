@@ -1,7 +1,7 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("Voidz Hub", "DOORS AND ROOMS", Color3.new(10,10.9,9), Enum.KeyCode.RightControl)
+local Window = Flux:Window("Voidz Hub", "DOORS AND ROOMS", Color3.new(0,10.1), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("MAIN", "rbxassetid://6026568198")
 local Tab2 = Window:Tab("GAME", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -522,12 +522,12 @@ Tab:Toggle("NOCLIP BYPASS","Lets you walk through any object. Does not work on D
     end
     PrimaryPart.CanCollide = not Noclip
 end)
-if Floor.Value == "Phòng" then
+if Floor.Value == "Room" then
     Tab2:Toggle("REMOVE A90","Disables A-90 visual, sound, and damage.",false,function(Bool)
         DisableA90 = Bool
     end)
 end
-Tab2:Toggle("ESP ITEM","Highlights items like Books, and Crucifixes through walls.",false,function(Bool)
+Tab2:Toggle("ESP ITEM","Highlights items like Key, Books, and Crucifixes through walls.",false,function(Bool)
     ItemESP = Bool
     for _,Object in pairs(workspace:GetDescendants()) do
         if ESP_Items[Object.Name] then
@@ -743,7 +743,7 @@ while true do
                     end
                 end
                 for i3, o3 in pairs(o2:GetChildren()) do
-                    if o3:FindFirstChild("KeyObtain") then 
+                    if o3:FindFirstChild("KeyObtain") then
                         if o3.KeyObtain:FindFirstChild("Hitbox") then
                             if not o3.KeyObtain.Hitbox:FindFirstChild("SurfaceGui") then
                                 for a = 1, 6 do
@@ -762,26 +762,6 @@ while true do
                     end
                 end
             end
-            for i3, o3 in pairs(o2:GetChildren()) do
-                    if o3:FindFirstChild("Wardrobe") then 
-                        if o3.KeyObtain:FindFirstChild("Hitbox") then
-                            if not o3.KeyObtain.Hitbox:FindFirstChild("SurfaceGui") then
-                                for a = 1, 6 do
-                                    local surface = Instance.new("SurfaceGui")
-                                    surface.Parent = o3.KeyObtain.Hitbox
-                                    surface.AlwaysOnTop = true
-                                    surface.Face = Enum.NormalId[faces[a]]
-                                    local frame = Instance.new("Frame", surface)
-                                    frame.Size = UDim2.new(1, 0, 1, 0)
-                                    frame.BorderSizePixel = 0
-                                    frame.BackgroundTransparency = 0.5
-                                    frame.BackgroundColor3 = Color3.new(0, 0, 1)
-                                end
-                            end
-                        end
-                    end
-                end
-        end
             for i2, o2 in pairs(o.Assets:GetChildren()) do
                 if o2.Name == "Snare" then
                     for i3, o3 in pairs(o2:GetChildren()) do
@@ -817,6 +797,64 @@ while true do
             end
         end
     end
+    if game.Workspace:FindFirstChild("RushMoving") then
+        if game.Workspace.RushMoving:FindFirstChild("RushNew") then
+            local rush = game.Workspace.RushMoving.RushNew.Position
+            local me = game.Workspace[playerName].HumanoidRootPart.Position
+            text1.Text = "Rush: " .. math.round((me - rush).Magnitude * 10) / 10
+            text1.BackgroundColor3 = Color3.new(1, 0, 0)
+            if not game.Workspace.RushMoving.RushNew:FindFirstChild("SurfaceGui") then
+                for a = 1, 6 do
+                    local surface = Instance.new("SurfaceGui")
+                    surface.Parent = game.Workspace.RushMoving.RushNew
+                    surface.AlwaysOnTop = true
+                    surface.Face = Enum.NormalId[faces[a]]
+                    local frame = Instance.new("Frame", surface)
+                    frame.Size = UDim2.new(1, 0, 1, 0)
+                    frame.BorderSizePixel = 0
+                    frame.BackgroundTransparency = 0.5
+                    frame.BackgroundColor3 = Color3.new(1, 1, 1)
+                end
+            end
+        end
+    if game.Workspace:FindFirstChild("AmbushMoving") then
+        if game.Workspace.AmbushMoving:FindFirstChild("RushNew") then
+            local ambush = game.Workspace.AmbushMoving.RushNew.Position
+            local me = game.Workspace[playerName].HumanoidRootPart.Position
+            text2.Text = "Ambush: " .. math.round((me - ambush).Magnitude * 10) / 10
+            text2.BackgroundColor3 = Color3.new(1, 0, 0)
+            if not game.Workspace.AmbushMoving.RushNew:FindFirstChild("SurfaceGui") then
+                for a = 1, 6 do
+                    local surface = Instance.new("SurfaceGui")
+                    surface.Parent = game.Workspace.AmbushMoving.RushNew
+                    surface.AlwaysOnTop = true
+                    surface.Face = Enum.NormalId[faces[a]]
+                    local frame = Instance.new("Frame", surface)
+                    frame.Size = UDim2.new(1, 0, 1, 0)
+                    frame.BorderSizePixel = 0
+                    frame.BackgroundTransparency = 0.5
+                    frame.BackgroundColor3 = Color3.new(0, 1, 1)
+                end
+            end
+        end
+    if game.Workspace:FindFirstChild("SeekMoving") then
+        if game.Workspace.SeekMoving:FindFirstChild("SeekRig") then
+            if game.Workspace.SeekMoving.SeekRig:FindFirstChild("SeekPuddle") then
+                game.Workspace.SeekMoving.SeekRig.SeekPuddle:Destroy()
+            end
+            if not game.Workspace.SeekMoving.SeekRig:FindFirstChild("HighlightA") then
+                local hl = Instance.new("Highlight")
+                hl.Name = "HighlightA"
+                hl.Parent = game.Workspace.SeekMoving.SeekRig
+                hl.OutlineTransparency = 1
+                hl.FillTransparency = 0.25
+                hl.FillColor = Color3.new(1, 0, 0)
+            end
+            local seek = game.Workspace.SeekMoving.SeekRig.UpperTorso.Position
+            local me = game.Workspace[playerName].HumanoidRootPart.Position
+            text3.Text = "Seek: " .. math.round((me - seek).Magnitude * 10) / 10
+            text3.BackgroundColor3 = Color3.new(1, 0, 0)
+        end
     if game.Workspace.CurrentRooms:FindFirstChild("50") then
         if game.Workspace.CurrentRooms["50"]:FindFirstChild("FigureSetup") then
             if game.Workspace.CurrentRooms["50"].FigureSetup:FindFirstChild("FigureRagdoll") then
@@ -846,4 +884,4 @@ while true do
         end
     end
     wait()
-    end
+end
