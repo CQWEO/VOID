@@ -1,9 +1,9 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("Voidz Hub", "CREATE MURDER", Color3.new(10,4.9), Enum.KeyCode.RightControl)
-local Tab = Window:Tab("Hỗ Trợ", "rbxassetid://6026568198")
-local Tab2 = Window:Tab("Cài Đăt", "rbxassetid://6031763426")
+local Window = Flux:Window("Voidz Hub", "CREATE LOLCAT AND MURDER", Color3.new(10,4.9), Enum.KeyCode.RightControl)
+local Tab = Window:Tab("MAIN", "rbxassetid://6026568198")
+local Tab2 = Window:Tab("GAME", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -506,7 +506,7 @@ Tab:Toggle("REMOVE HOLD","Removes having to hold down the button for a long peri
         end
     end
 end)
-Tab:Toggle("COMPLETE POWER ELICTRO IN 10 SECONDS","Tricks the game into thinking you completed the breaker puzzle at Room 100. May take up to 10 seconds to work.",false,function(Bool)
+Tab:Toggle("COMPLETE POWER ELECTRO IN 10 SECONDS","Tricks the game into thinking you completed the breaker puzzle at Room 100. May take up to 10 seconds to work.",false,function(Bool)
     NoBreaker = Bool
     while task.wait(1) do
         if not NoBreaker then
