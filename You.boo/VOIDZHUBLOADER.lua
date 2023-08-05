@@ -1,7 +1,7 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("Voidz Hub", "CREATE LOLCAT GUI AND MURDER", Color3.new(10,10.9,9), Enum.KeyCode.RightControl)
+local Window = Flux:Window("Voidz Hub", "DOORS AND ROOMS", Color3.new(10,10.9,9), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("MAIN", "rbxassetid://6026568198")
 local Tab2 = Window:Tab("GAME", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -743,7 +743,7 @@ while true do
                     end
                 end
                 for i3, o3 in pairs(o2:GetChildren()) do
-                    if o3:FindFirstChild("KeyObtain") then
+                    if o3:FindFirstChild("KeyObtain") then 
                         if o3.KeyObtain:FindFirstChild("Hitbox") then
                             if not o3.KeyObtain.Hitbox:FindFirstChild("SurfaceGui") then
                                 for a = 1, 6 do
@@ -762,6 +762,26 @@ while true do
                     end
                 end
             end
+            for i3, o3 in pairs(o2:GetChildren()) do
+                    if o3:FindFirstChild("Wardrobe") then 
+                        if o3.KeyObtain:FindFirstChild("Hitbox") then
+                            if not o3.KeyObtain.Hitbox:FindFirstChild("SurfaceGui") then
+                                for a = 1, 6 do
+                                    local surface = Instance.new("SurfaceGui")
+                                    surface.Parent = o3.KeyObtain.Hitbox
+                                    surface.AlwaysOnTop = true
+                                    surface.Face = Enum.NormalId[faces[a]]
+                                    local frame = Instance.new("Frame", surface)
+                                    frame.Size = UDim2.new(1, 0, 1, 0)
+                                    frame.BorderSizePixel = 0
+                                    frame.BackgroundTransparency = 0.5
+                                    frame.BackgroundColor3 = Color3.new(0, 0, 1)
+                                end
+                            end
+                        end
+                    end
+                end
+        end
             for i2, o2 in pairs(o.Assets:GetChildren()) do
                 if o2.Name == "Snare" then
                     for i3, o3 in pairs(o2:GetChildren()) do
