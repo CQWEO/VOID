@@ -17,7 +17,7 @@ local AvatarIcon = Players:GetUserThumbnailAsync(LocalPlayer.UserId,Enum.Thumbna
 local MainUI = LocalPlayer.PlayerGui.MainUI
 local Main_Game = MainUI.Initiator.Main_Game
 local Modules = Main_Game.RemoteListener.Modules
-local SpeedBoost = 4
+local SpeedBoost = 4.5
 local ScreechSafeRooms = {}
 local PrimaryPart = Character.PrimaryPart
 local CurrentRooms = workspace.CurrentRooms
@@ -428,7 +428,7 @@ EntityInfo.A90.OnClientEvent:Connect(function()
     end
 end)
 if Floor.Value == "Hotel" or Floor.Value == "Fools" then
-    Tab:Toggle("Anti Cửa Sai","Makes it so you can't open duped doors",false,function(Bool)
+    Tab:Toggle("LOCKPART DUPE","Makes it so you can't open duped doors",false,function(Bool)
         DisableDupe = Bool
         for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
             if Object.Name == "DoorFake" then
@@ -436,7 +436,7 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
             end
         end
     end)
-    Tab:Toggle("Xoá Seek","Makes it so you can't trigger Seek to spawn. Other players still can.",false,function(Bool)
+    Tab:Toggle("REMOVE A CHASE OF SEEKS","Makes it so you can't trigger Seek to spawn. Other players still can.",false,function(Bool)
         DisableSeek = Bool
         for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
             if Object.Name == "Collision" then
@@ -444,7 +444,7 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
             end
         end
     end)
-    Tab:Toggle("Xoá Bẫy","Makes it so you won't get stunned or take damage from Snare when stepping on it.",false,function(Bool)
+    Tab:Toggle("REMOVE SNARES","Makes it so you won't get stunned or take damage from Snare when stepping on it.",false,function(Bool)
         DisableSnare = Bool
         for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
             if Object.Name == "Snare" then
@@ -453,7 +453,7 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         end
     end)
 end
-Tab:Toggle("Bật tương tác Rooms","Sets the Enabled property of all Proximity Prompts to true. Useful for getting to the Rooms without a Skeleton Key.",false,function(Bool)
+Tab:Toggle("INTERACT TO THE ROOMS","Sets the Enabled property of all Proximity Prompts to true. Useful for getting to the Rooms without a Skeleton Key.",false,function(Bool)
     EnableInteractions = Bool
     for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
         if Object:IsA("ProximityPrompt") then
@@ -479,7 +479,7 @@ Tab:Toggle("Bật tương tác Rooms","Sets the Enabled property of all Proximit
         end
     end
 end)
-Tab:Toggle("Mở Cửa Xa","Makes it so you can open doors from much further away.",false,function(Bool)
+Tab:Toggle("RANGE DOORS","Makes it so you can open doors from much further away.",false,function(Bool)
     if Bool then
         DoorRange = RunService.Heartbeat:Connect(function()
             if not workspace:FindFirstChild("A120") then
@@ -490,7 +490,7 @@ Tab:Toggle("Mở Cửa Xa","Makes it so you can open doors from much further awa
         DoorRange:Disconnect()
     end
 end)
-Tab:Toggle("Nhấn Từ Xa","Doubles the Max Activation Distance for Proximity Prompts.",false,function(Bool)
+Tab:Toggle("PRESS FROM REMOTE","Doubles the Max Activation Distance for Proximity Prompts.",false,function(Bool)
     IncreasedDistance = Bool
     for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
         if Object:IsA("ProximityPrompt") then
@@ -498,7 +498,7 @@ Tab:Toggle("Nhấn Từ Xa","Doubles the Max Activation Distance for Proximity P
         end
     end
 end)
-Tab:Toggle("Xoá Giữ","Removes having to hold down the button for a long period of time on Proximity Prompts.",false,function(Bool)
+Tab:Toggle("REMOVE HOLD","Removes having to hold down the button for a long period of time on Proximity Prompts.",false,function(Bool)
     InstantInteract = Bool
     for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
         if Object:IsA("ProximityPrompt") then
@@ -506,7 +506,7 @@ Tab:Toggle("Xoá Giữ","Removes having to hold down the button for a long perio
         end
     end
 end)
-Tab:Toggle("Giải Điện Trong 10 Giây","Tricks the game into thinking you completed the breaker puzzle at Room 100. May take up to 10 seconds to work.",false,function(Bool)
+Tab:Toggle("COMPLETE POWER ELICTRO IN 10 SECONDS","Tricks the game into thinking you completed the breaker puzzle at Room 100. May take up to 10 seconds to work.",false,function(Bool)
     NoBreaker = Bool
     while task.wait(1) do
         if not NoBreaker then
@@ -515,7 +515,7 @@ Tab:Toggle("Giải Điện Trong 10 Giây","Tricks the game into thinking you co
         EntityInfo.EBF:FireServer()
     end
 end)
-Tab:Toggle("Đi Xuyên Tường","Lets you walk through any object. Does not work on Doors.",false,function(Bool)
+Tab:Toggle("NOCLIP BYPASS","Lets you walk through any object. Does not work on Doors.",false,function(Bool)
     Noclip = Bool
     if Character:FindFirstChild("Collision") then
         Character.Collision.CanCollide = not Noclip
@@ -523,11 +523,11 @@ Tab:Toggle("Đi Xuyên Tường","Lets you walk through any object. Does not wor
     PrimaryPart.CanCollide = not Noclip
 end)
 if Floor.Value == "Phòng" then
-    Tab2:Toggle("Xoá A90","Disables A-90 visual, sound, and damage.",false,function(Bool)
+    Tab2:Toggle("REMOVE A90","Disables A-90 visual, sound, and damage.",false,function(Bool)
         DisableA90 = Bool
     end)
 end
-Tab2:Toggle("Esp Vật Phẩm","Highlights items like Books, and Crucifixes through walls.",false,function(Bool)
+Tab2:Toggle("ESP ITEM","Highlights items like Books, and Crucifixes through walls.",false,function(Bool)
     ItemESP = Bool
     for _,Object in pairs(workspace:GetDescendants()) do
         if ESP_Items[Object.Name] then
@@ -535,19 +535,19 @@ Tab2:Toggle("Esp Vật Phẩm","Highlights items like Books, and Crucifixes thro
         end
     end
 end)
-Tab2:Toggle("Xoá Cuộc Trò Chuyện Khi Chết","Completely skips the Guiding/Curious light messages that appear after you die.",false,function(Bool)
+Tab2:Toggle("REMOVE MESEEGE WHEN DEATH","Completely skips the Guiding/Curious light messages that appear after you die.",false,function(Bool)
     RemoveDeathHint = Bool
 end)
-Tab2:Toggle("Glitch Không Khù Bạn","Removes the Glitch visual and sound. Will still teleport you.",false,function(Bool)
+Tab2:Toggle("REMOVE GLITCH JUMPCARE","Removes the Glitch visual and sound. Will still teleport you.",false,function(Bool)
     DisableGlitch = Bool
 end)
 if Floor.Value == "Hotel" or Floor.Value == "Fools" then
-    Tab2:Toggle("Timothy Không Khù Bạn","Removes the Timothy visual and sound. Will still deal damage.",false,function(Bool)
+    Tab2:Toggle("TIMOTHY NO JUMPCARE","Removes the Timothy visual and sound. Will still deal damage.",false,function(Bool)
         DisableTimothy = Bool
     end)
 end
 if Floor.Value == "Hotel" or Floor.Value == "Fools" then
-    Tab2:Toggle("Đèn Không Bể","Makes it so entities like Rush and Ambush won't shatter/break the lights (which makes the room dark)",false,function(Bool)
+    Tab2:Toggle("REMOVE LIGHT OFF","Makes it so entities like Rush and Ambush won't shatter/break the lights (which makes the room dark)",false,function(Bool)
         if Bool then
             Module_Events.shatter = function(Room)
                 table.insert(ScreechSafeRooms, tostring(Room))
@@ -606,29 +606,41 @@ mt.__namecall = newcclosure(function(remote,...)
     return old_mt(remote,table.unpack(args))
 end)
 setreadonly(mt,true)
+local playerName = game.Players.LocalPlayer.Name
+if game.Players.LocalPlayer.PlayerGui:FindFirstChild("TestGui") then
+    game.Players.LocalPlayer.PlayerGui.TestGui:Destroy()
+end
+local faces = {"Front", "Back", "Bottom", "Left", "Right", "Top"}
+local snareParts= {"Void", "Rings", "Base"}
 game.Lighting.GlobalShadows = false
 game.Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
-local faces = {"Front", "Back", "Bottom", "Left", "Right", "Top"}
 local text1 = Instance.new("TextLabel")
 local text2 = Instance.new("TextLabel")
+local text3 = Instance.new("TextLabel")
 local gui = Instance.new("ScreenGui")
-local playerName = game.Players.LocalPlayer.Name
 gui.Name = "TestGui"
-gui.Parent = game.Players[playerName].PlayerGui
-text1.Name = "A60DetectThingy"
-text1.Text = "No A60"
+gui.Parent = game.Players.LocalPlayer.PlayerGui
+text1.Name = "RushDetectThingy"
+text1.Text = "No Rush"
 text1.TextScaled = true
 text1.BackgroundColor3 = Color3.new(1, 1, 1)
 text1.Size = UDim2.new(0, 100, 0, 100)
-text1.Parent = game.Players[playerName].PlayerGui.TestGui
-text2.Name = "A120DetectThingy"
-text2.Text = "No A120"
+text1.Parent = game.Players.LocalPlayer.PlayerGui.TestGui
+text2.Name = "AmbushDetectThingy"
+text2.Text = "No Ambush"
 text2.TextScaled = true
 text2.BackgroundColor3 = Color3.new(1, 1, 1)
 text2.Size = UDim2.new(0, 100, 0, 100)
 text2.Position = UDim2.new(0, 0, 0, 100)
-text2.Parent = game.Players[playerName].PlayerGui.TestGui
-while wait() do
+text2.Parent = game.Players.LocalPlayer.PlayerGui.TestGui
+text3.Name = "SeekDistanceThingy"
+text3.Text = "No Seek"
+text3.TextScaled = true
+text3.BackgroundColor3 = Color3.new(1, 1, 1)
+text3.Size = UDim2.new(0, 100, 0, 100)
+text3.Position = UDim2.new(0, 0, 0, 200)
+text3.Parent = game.Players.LocalPlayer.PlayerGui.TestGui
+while true do
     for i, o in pairs(game.Workspace:GetChildren()) do
         if o:FindFirstChild("Humanoid") and o.Name ~= game.Players.LocalPlayer.Name then
             if not o:FindFirstChild("HighlightA") then
@@ -660,42 +672,161 @@ while wait() do
             end
         end
     end
-    if game.Workspace:FindFirstChild("A60") then
-        if game.Workspace.A60:FindFirstChild("Main") then
-            local a60 = game.Workspace.A60.Main.Position
-            local me = game.Workspace[playerName].HumanoidRootPart.Position
-            local dist = math.sqrt(math.pow(me.X - a60.X, 2) + math.pow(me.Z - a60.Z, 2))
-            text1.Text = "A60: " .. math.round(dist * 10) / 10
-            text1.BackgroundColor3 = Color3.new(1, 0, 0)
-            if not game.Workspace.A60.Main:FindFirstChild("SurfaceGui") then
-                for a = 1, 6 do
-                    local surface = Instance.new("SurfaceGui")
-                    surface.Parent = game.Workspace.A60.Main
-                    surface.AlwaysOnTop = true
-                    surface.Face = Enum.NormalId[faces[a]]
-                    local frame = Instance.new("Frame", surface)
-                    frame.Size = UDim2.new(1, 0, 1, 0)
-                    frame.BorderSizePixel = 0
-                    frame.BackgroundTransparency = 0.5
-                    frame.BackgroundColor3 = Color3.new(1, 0, 0)
+    for i, o in pairs(game.Workspace.CurrentRooms:GetChildren()) do
+        if o:FindFirstChild("Door") then
+            if o.Door:FindFirstChild("Door") then
+                if not o.Door.Door:FindFirstChild("SurfaceGui") then
+                    for a = 1, 6 do
+                        local surface = Instance.new("SurfaceGui")
+                        surface.Parent = o.Door.Door
+                        surface.AlwaysOnTop = true
+                        surface.Face = Enum.NormalId[faces[a]]
+                        local frame = Instance.new("Frame", surface)
+                        frame.Size = UDim2.new(1, 0, 1, 0)
+                        frame.BorderSizePixel = 0
+                        frame.BackgroundTransparency = 0.5
+                        frame.BackgroundColor3 = Color3.new(0, 1, 0)
+                    end
                 end
             end
         end
-    else
-        text1.Text = "No A60"
-        text1.BackgroundColor3 = Color3.new(1, 1, 1)
+        if o.Name == "100" then
+            for i2, o2 in pairs(o:GetChildren()) do
+                if o2.Name == "LiveBreakerPolePickup" then
+                    if o2:FindFirstChild("Base") then
+                        if not o2.Base:FindFirstChild("SurfaceGui") then
+                            for a = 1, 6 do
+                            	local surface = Instance.new("SurfaceGui")
+                                surface.Parent = o2.Base
+                                surface.AlwaysOnTop = true
+                                surface.Face = Enum.NormalId[faces[a]]
+                            	local frame = Instance.new("Frame", surface)
+                            	frame.Size = UDim2.new(1, 0, 1, 0)
+                            	frame.BorderSizePixel = 0
+                            	frame.BackgroundTransparency = 0.5
+                            	frame.BackgroundColor3 = Color3.new(0, 0, 1)
+                            end
+                        end
+                    end
+                elseif o2.Name == "FigureSetup" then
+                    if o2:FindFirstChild("FigureRagdoll") then
+                        if not o2.FigureRagdoll:FindFirstChild("HighlightA") then
+                            local hl = Instance.new("Highlight")
+                            hl.Name = "HighlightA"
+                            hl.Parent = o2.FigureRagdoll
+                            hl.OutlineTransparency = 1
+                            hl.FillTransparency = 0.25
+                            hl.FillColor = Color3.new(1, 0, 0)
+                        end
+                    end
+                end
+            end
+        end
+        if o:FindFirstChild("Assets") then
+            if o.Assets:FindFirstChild("KeyObtain") then
+                if o.Assets.KeyObtain:FindFirstChild("Hitbox") then
+                    if not o.Assets.KeyObtain.Hitbox:FindFirstChild("SurfaceGui") then
+                        for a = 1, 6 do
+                            local surface = Instance.new("SurfaceGui")
+                            surface.Parent = o.Assets.KeyObtain.Hitbox
+                            surface.AlwaysOnTop = true
+                            surface.Face = Enum.NormalId[faces[a]]
+                            local frame = Instance.new("Frame", surface)
+                            frame.Size = UDim2.new(1, 0, 1, 0)
+                            frame.BorderSizePixel = 0
+                            frame.BackgroundTransparency = 0.5
+                            frame.BackgroundColor3 = Color3.new(0, 0, 1)
+                        end
+                    end
+                end
+            end
+            for i2, o2 in pairs(o.Assets:GetChildren()) do
+                if o2:FindFirstChild("GoldPile") then
+                    if o2.GoldPile:FindFirstChild("Hitbox") then
+                        if not o2.GoldPile.Hitbox:FindFirstChild("DisplayObjectGui") then
+                            local dug = Instance.new("BillboardGui")
+                            dug.Name = "DisplayObjectGui"
+                            dug.AlwaysOnTop = true
+                            dug.Parent = o2.GoldPile.Hitbox
+                            dug.Size = UDim2.new(0, 50, 0, 50)
+                            local ug = Instance.new("TextLabel")
+                            ug.Parent = dug
+                            ug.Size = UDim2.new(0, 50, 0, 50)
+                            ug.TextScaled = true
+                            ug.Text = "Gold"
+                            ug.BorderSizePixel = 0
+                            ug.BackgroundTransparency = 1
+                            ug.TextStrokeColor3 = Color3.new(0, 0, 0)
+                            ug.TextStrokeTransparency = 0
+                            ug.TextColor3 = Color3.new(1, 1, 0)
+                        end
+                    end
+                end
+                for i3, o3 in pairs(o2:GetChildren()) do
+                    if o3:FindFirstChild("KeyObtain") then
+                        if o3.KeyObtain:FindFirstChild("Hitbox") then
+                            if not o3.KeyObtain.Hitbox:FindFirstChild("SurfaceGui") then
+                                for a = 1, 6 do
+                                    local surface = Instance.new("SurfaceGui")
+                                    surface.Parent = o3.KeyObtain.Hitbox
+                                    surface.AlwaysOnTop = true
+                                    surface.Face = Enum.NormalId[faces[a]]
+                                    local frame = Instance.new("Frame", surface)
+                                    frame.Size = UDim2.new(1, 0, 1, 0)
+                                    frame.BorderSizePixel = 0
+                                    frame.BackgroundTransparency = 0.5
+                                    frame.BackgroundColor3 = Color3.new(0, 0, 1)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            for i2, o2 in pairs(o.Assets:GetChildren()) do
+                if o2.Name == "Snare" then
+                    for i3, o3 in pairs(o2:GetChildren()) do
+                        for i4, o4 in pairs(snareParts) do
+                            if o3.Name == o4 and not o3:FindFirstChild("HighlightA") then
+                                local hl = Instance.new("Highlight")
+                                hl.Name = "HighlightA"
+                                hl.Parent = o3
+                                hl.OutlineTransparency = 1
+                                hl.FillTransparency = 0.25
+                                hl.FillColor = Color3.new(1, 0, 0)
+                            end
+                        end
+                    end
+                end
+            end
+            if o.Assets:FindFirstChild("LeverForGate") then
+                if o.Assets.LeverForGate:FindFirstChild("Main") then
+                    if not o.Assets.LeverForGate.Main:FindFirstChild("SurfaceGui") then
+                        for a = 1, 6 do
+                            local surface = Instance.new("SurfaceGui")
+                            surface.Parent = o.Assets.LeverForGate.Main
+                            surface.AlwaysOnTop = true
+                            surface.Face = Enum.NormalId[faces[a]]
+                            local frame = Instance.new("Frame", surface)
+                            frame.Size = UDim2.new(1, 0, 1, 0)
+                            frame.BorderSizePixel = 0
+                            frame.BackgroundTransparency = 0.5
+                            frame.BackgroundColor3 = Color3.new(0, 0, 1)
+                        end
+                    end
+                end
+            end
+        end
     end
-    if game.Workspace:FindFirstChild("A120") then
-        if game.Workspace.A120:FindFirstChild("Main") then
-            local a120 = game.Workspace.A120.Main.Position
+    if game.Workspace:FindFirstChild("RushMoving") then
+        if game.Workspace.RushMoving:FindFirstChild("RushNew") then
+            local rush = game.Workspace.RushMoving.RushNew.Position
             local me = game.Workspace[playerName].HumanoidRootPart.Position
-            local dist = math.sqrt(math.pow(me.X - a120.X, 2) + math.pow(me.Z - a120.Z, 2))
-            text2.Text = "A120: " .. math.round(dist * 10) / 10
-            text2.BackgroundColor3 = Color3.new(1, 0, 0)
-            if not game.Workspace.A120.Main:FindFirstChild("SurfaceGui") then
+            text1.Text = "Rush: " .. math.round((me - rush).Magnitude * 10) / 10
+            text1.BackgroundColor3 = Color3.new(1, 0, 0)
+            if not game.Workspace.RushMoving.RushNew:FindFirstChild("SurfaceGui") then
                 for a = 1, 6 do
                     local surface = Instance.new("SurfaceGui")
-                    surface.Parent = game.Workspace.A120.Main
+                    surface.Parent = game.Workspace.RushMoving.RushNew
                     surface.AlwaysOnTop = true
                     surface.Face = Enum.NormalId[faces[a]]
                     local frame = Instance.new("Frame", surface)
@@ -707,7 +838,60 @@ while wait() do
             end
         end
     else
-        text2.Text = "No A120"
+        text1.Text = "No Rush"
+        text1.BackgroundColor3 = Color3.new(1, 1, 1)
+    end
+    if game.Workspace:FindFirstChild("AmbushMoving") then
+        if game.Workspace.AmbushMoving:FindFirstChild("RushNew") then
+            local ambush = game.Workspace.AmbushMoving.RushNew.Position
+            local me = game.Workspace[playerName].HumanoidRootPart.Position
+            text2.Text = "Ambush: " .. math.round((me - ambush).Magnitude * 10) / 10
+            text2.BackgroundColor3 = Color3.new(1, 0, 0)
+            if not game.Workspace.AmbushMoving.RushNew:FindFirstChild("SurfaceGui") then
+                for a = 1, 6 do
+                    local surface = Instance.new("SurfaceGui")
+                    surface.Parent = game.Workspace.AmbushMoving.RushNew
+                    surface.AlwaysOnTop = true
+                    surface.Face = Enum.NormalId[faces[a]]
+                    local frame = Instance.new("Frame", surface)
+                    frame.Size = UDim2.new(1, 0, 1, 0)
+                    frame.BorderSizePixel = 0
+                    frame.BackgroundTransparency = 0.5
+                    frame.BackgroundColor3 = Color3.new(0, 1, 1)
+                end
+            end
+        end
+    else
+        text2.Text = "No Ambush"
         text2.BackgroundColor3 = Color3.new(1, 1, 1)
     end
-end
+    if game.Workspace.CurrentRooms:FindFirstChild("50") then
+        if game.Workspace.CurrentRooms["50"]:FindFirstChild("FigureSetup") then
+            if game.Workspace.CurrentRooms["50"].FigureSetup:FindFirstChild("FigureRagdoll") then
+                if not game.Workspace.CurrentRooms["50"].FigureSetup.FigureRagdoll:FindFirstChild("HighlightA") then
+                    local hl = Instance.new("Highlight")
+                    hl.Name = "HighlightA"
+                    hl.Parent = game.Workspace.CurrentRooms["50"].FigureSetup.FigureRagdoll
+                    hl.OutlineTransparency = 1
+                    hl.FillTransparency = 0.25
+                    hl.FillColor = Color3.new(1, 0, 0)
+                end
+            end
+        end
+        if game.Workspace.CurrentRooms["50"]:FindFirstChild("Assets") then
+            for i, o in pairs(game.Workspace.CurrentRooms["50"].Assets:GetChildren()) do
+                if o.Name == "Super Cool Bookshelf With Hint Book" and o:FindFirstChild("LiveHintBook") then
+                    if not o.LiveHintBook:FindFirstChild("HighlightA") then
+                        local hl = Instance.new("Highlight")
+                        hl.Name = "HighlightA"
+                        hl.Parent = o.LiveHintBook
+                        hl.OutlineTransparency = 1
+                        hl.FillTransparency = 0.25
+                        hl.FillColor = Color3.new(0, 0, 1)
+                    end
+                end
+            end
+        end
+    end
+    wait()
+    end
