@@ -1,7 +1,7 @@
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
 
 local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
-local Window = Flux:Window("Voidz Hub", "DOORS AND ROOMS", Color3.new(0,10.1), Enum.KeyCode.RightControl)
+local Window = Flux:Window("Voidz Hub", "DOORS NO NOT ROOMS", Color3.new(0,10.1), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("MAIN", "rbxassetid://6026568198")
 local Tab2 = Window:Tab("GAME", "rbxassetid://6031763426")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
