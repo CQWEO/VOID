@@ -1,125 +1,162 @@
-local decalsYeeted = true
-local workspace = game.Workspace
-local lighting = game.Lighting
-local terrain = workspace.Terrain
+local library = loadstring(game:GetObjects("rbxassetid://7657867786")[1].Source)()
+local Wait = library.subs.Wait -- Only returns if the GUI has not been terminated. For 'while Wait() do' loops
 
--- Improve performance by setting hidden properties only once
-local lightingTechnology = 2
-local decorationEnabled = false
-sethiddenproperty(lighting, "Technology", lightingTechnology)
-sethiddenproperty(terrain, "Decoration", decorationEnabled)
-
--- Use table instead of separate settings
-local terrainSettings = {
-  WaterWaveSize = 0,
-  WaterWaveSpeed = 0,
-  WaterReflectance = 0,
-  WaterTransparency = 0,
+local PepsisWorld = library:CreateWindow({
+Name = "YOU HUB",
+Themeable = {
+Info = "Discord Server: VzYTJ7Y"
 }
-for setting, value in pairs(terrainSettings) do
-  terrain[setting] = value
-end
+})
 
-lighting.GlobalShadows = 0
-lighting.FogEnd = 9e9
-lighting.Brightness = 0
-settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
-
--- Consolidate common operations into functions for better readability and maintainability
-local function handleBasePart(part)
-  part.Material = Enum.Material.Plastic
-  part.Reflectance = 0
-end
-
-local function handleDecalOrTexture(decalOrTexture)
-  if decalsYeeted then
-    decalOrTexture.Transparency = 1
-  end
-end
-
-local function handleParticleEmitterOrTrail(emitterOrTrail)
-  emitterOrTrail.Lifetime = NumberRange.new(0)
-end
-
-local function handleExplosion(explosion)
-  explosion.BlastPressure = 1
-  explosion.BlastRadius = 1
-end
-
-local function handleMeshPart(meshPart)
-  if decalsYeeted then
-    meshPart.Material = Enum.Material.Plastic
-    meshPart.Reflectance = 0
-    meshPart.TextureID = 10385902758728957
-  end
-end
-
-local function handleSpecialMesh(specialMesh)
-  if decalsYeeted then
-    specialMesh.TextureId = 0
-  end
-end
-
-local function handleShirtGraphic(shirtGraphic)
-  if decalsYeeted then
-    shirtGraphic.Graphic = ""
-  end
-end
-
-local function handleClothing(clothing)
-  if decalsYeeted then
-    if clothing:IsA("Shirt") then
-      clothing.ShirtTemplate = ""
-    elseif clothing:IsA("Pants") then
-      clothing.PantsTemplate = ""
+local GeneralTab = PepsisWorld:CreateTab({
+Name = "Main"
+})
+local FarmingSection = GeneralTab:CreateSection({
+Name = "ESP"
+})
+FarmingSection:AddToggle({
+Name = "Door",
+Flag = "Ok"
+Callback = function(Door)
+if Door then
+        local function setup(room)
+            local door = room:WaitForChild("Door"):WaitForChild("Door")
+            
+            task.wait(0.1)
+            local h = esp(door,Color3.fromRGB(0,25 + 207 ,580 -325),door,"Door")
+            table.insert(esptable.doors,h)
+            
+            door:WaitForChild("Open").Played:Connect(function()
+                h.delete()
+            end)
+            
+            door.AncestryChanged:Connect(function()
+                h.delete()
+            end)
+        end
+        
+        local addconnect
+        addconnect = workspace.CurrentRooms.ChildAdded:Connect(function(room)
+            setup(room)
+        end)
+        
+        for i,room in pairs(workspace.CurrentRooms:GetChildren()) do
+            if room:FindFirstChild("Assets") then
+                setup(room) 
+            end
+        end
+        
+        repeat task.wait() until not flags.espdoors
+        addconnect:Disconnect()
+        
+        for i,v in pairs(esptable.doors) do
+            v.delete()
+        end 
     end
-  end
 end
-
--- Handle existing descendants
-for _, descendant in pairs(workspace:GetDescendants()) do
-  if descendant:IsA("BasePart") and not descendant:IsA("MeshPart") then
-    handleBasePart(descendant)
-  elseif descendant:IsA("Decal") or descendant:IsA("Texture") then
-    handleDecalOrTexture(descendant)
-  elseif descendant:IsA("ParticleEmitter") or descendant:IsA("Trail") then
-    handleParticleEmitterOrTrail(descendant)
-  elseif descendant:IsA("Explosion") then
-    handleExplosion(descendant)
-  elseif descendant:IsA("Fire") or descendant:IsA("SpotLight") or descendant:IsA("Smoke") or descendant:IsA("Sparkles") then
-    descendant.Enabled = false
-  elseif descendant:IsA("MeshPart") then
-    handleMeshPart(descendant)
-  elseif descendant:IsA("SpecialMesh") then
-    handleSpecialMesh(descendant)
-  elseif descendant:IsA("ShirtGraphic") then
-    handleShirtGraphic(descendant)
-  elseif descendant:IsA("Shirt") or descendant:IsA("Pants") then
-    handleClothing(descendant)
-  end
-end
-
--- Handle new descendants
-workspace.DescendantAdded:Connect(function(descendant)
-  if descendant:IsA("BasePart") and not descendant:IsA("MeshPart") then
-    handleBasePart(descendant)
-  elseif descendant:IsA("Decal") or descendant:IsA("Texture") then
-    handleDecalOrTexture(descendant)
-  elseif descendant:IsA("ParticleEmitter") or descendant:IsA("Trail") then
-    handleParticleEmitterOrTrail(descendant)
-  elseif descendant:IsA("Explosion") then
-    handleExplosion(descendant)
-  elseif descendant:IsA("Fire") or descendant:IsA("SpotLight") or descendant:IsA("Smoke") or descendant:IsA("Sparkles") then
-    descendant.Enabled = false
-  elseif descendant:IsA("MeshPart") then
-    handleMeshPart(descendant)
-  elseif descendant:IsA("SpecialMesh") then
-    handleSpecialMesh(descendant)
-  elseif descendant:IsA("ShirtGraphic") then
-    handleShirtGraphic(descendant)
-  elseif descendant:IsA("Shirt") or descendant:IsA("Pants") then
-    handleClothing(descendant)
-  end
-end)
-
-print("Anti-lag script loaded successfully!")
+})
+FarmingSection:AddToggle({
+Name = "Key",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Key
+})
+FarmingSection:AddToggle({
+Name = "Hiding Spot",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Esp,
+Callback = Wardrobe
+})
+FarmingSection:AddToggle({
+Name = "Entity",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})FarmingSection:AddToggle({
+Name = "Locker",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})FarmingSection:AddToggle({
+Name = "Book",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})FarmingSection:AddToggle({
+Name = "Breaker",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})FarmingSection:AddToggle({
+Name = "Item",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})
+local FarmingSection = GeneralTab:CreateSection({
+Name = "Misc"
+})
+FarmingSection:AddToggle({
+Name = "No Screech",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})
+FarmingSection:AddToggle({
+Name = "No Halt",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})
+FarmingSection:AddToggle({
+Name = "No Eyes",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})
+FarmingSection:AddToggle({
+Name = "No Pating",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})
+FarmingSection:AddToggle({
+Name = "LockPart Dupe Door",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})
+FarmingSection:AddToggle({
+Name = "No Void",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})
+FarmingSection:AddToggle({
+Name = "No Glitch",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})
+FarmingSection:AddToggle({
+Name = "No Timothy Jumpcare",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})
+FarmingSection:AddToggle({
+Name = "No Seek Trigger Collision",
+Flag = "FarmingSection_TrickSpammer",
+Keybind = Enter,
+Callback = Door
+})
+FarmingSection:Slider(
+    {
+	Name = "Walkspeed",
+	Value = 0,
+	Min = 0,
+	Max = 21,
+	Callback = function(ws)
+		getgenv().cfspeed = ws
+	end
+})
